@@ -1,5 +1,8 @@
-﻿using OpenQA.Selenium;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using OpenQA.Selenium;
+using OpenQA.Selenium.Support.UI;
 using RelevantCodes.ExtentReports;
+using SeleniumExtras.WaitHelpers;
 using SpecflowPages;
 using System;
 using System.Threading;
@@ -15,7 +18,8 @@ namespace SpecflowTests.AcceptanceTest
         public void GivenIClickedOnTheLanguageTabUnderProfile()
         {
             //Wait
-            Thread.Sleep(1500);
+            WebDriverWait wait = new WebDriverWait(Driver.driver, TimeSpan.FromSeconds(20));
+            wait.Until(ExpectedConditions.ElementExists(By.XPath("(//a[@class='item'][contains(.,'Profile')])[2]")));
 
             // Click on Profile tab
             Driver.driver.FindElement(By.XPath("(//a[@class='item'][contains(.,'Profile')])[2]")).Click();
@@ -27,6 +31,7 @@ namespace SpecflowTests.AcceptanceTest
             Thread.Sleep(1000);
             string ExpectedValue = "tagalog";
             string ActualValue = Driver.driver.FindElement(By.XPath("//td[text()='tagalog']")).Text;
+            Assert.AreEqual(ExpectedValue, ActualValue);
 
             Thread.Sleep(500);
 
@@ -45,16 +50,16 @@ namespace SpecflowTests.AcceptanceTest
                 //Start the Reports
                 CommonMethods.ExtentReports();
                 Thread.Sleep(1000);
-                CommonMethods.test = CommonMethods.extent.StartTest("Add a Language");
+                CommonMethods.test = CommonMethods.extent.StartTest("Delete a Language");
 
                 Thread.Sleep(1000);
-                string ExpectedValue = "English";
-                string ActualValue = Driver.driver.FindElement(By.XPath("/html/body/div[1]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody/tr/td[1]")).Text;
+                string ExpectedValue = "tagalog";
+                string ActualValue = Driver.driver.FindElement(By.XPath("//td[text()='tagalog']")).Text;
                 Thread.Sleep(500);
-                if (ExpectedValue == ActualValue)
+                if (ExpectedValue != ActualValue)
                 {
-                    CommonMethods.test.Log(LogStatus.Pass, "Test Passed, Added a Language Successfully");
-                    SaveScreenShotClass.SaveScreenshot(Driver.driver, "LanguageAdded");
+                    CommonMethods.test.Log(LogStatus.Pass, "Test Passed, Deleted a Language Successfully");
+                    SaveScreenShotClass.SaveScreenshot(Driver.driver, "Language Deleted");
                 }
 
                 else

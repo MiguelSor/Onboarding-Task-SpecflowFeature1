@@ -5,6 +5,9 @@ using System;
 using System.Threading;
 using TechTalk.SpecFlow;
 using static SpecflowPages.CommonMethods;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using OpenQA.Selenium.Support.UI;
+using SeleniumExtras.WaitHelpers;
 
 namespace SpecflowTests.AcceptanceTest
 {
@@ -16,11 +19,11 @@ namespace SpecflowTests.AcceptanceTest
         public void GivenIClickedOnTheLanguageTabUnderProfilePage()
         {
             //Wait
-            Thread.Sleep(1500);
-       
+            WebDriverWait wait = new WebDriverWait(Driver.driver, TimeSpan.FromSeconds(20));
+            wait.Until(ExpectedConditions.ElementExists(By.XPath("(//a[@class='item'][contains(.,'Profile')])[2]")));
+
             // Click on Profile tab
             Driver.driver.FindElement(By.XPath("(//a[@class='item'][contains(.,'Profile')])[2]")).Click();
-
             
         }
         
@@ -31,8 +34,8 @@ namespace SpecflowTests.AcceptanceTest
             Driver.driver.FindElement(By.XPath("(//div[@class='ui teal button '][contains(.,'Add New')])[1]")).Click();
 
             //Add Language
-            Driver.driver.FindElement(By.XPath("//input[contains(@placeholder,'Add Language')]")).SendKeys("English");
-
+            Driver.driver.FindElement(By.XPath("//input[contains(@placeholder,'Add Language')]")).SendKeys("tagalog");
+            
             //Click on Language Level
             Driver.driver.FindElement(By.XPath("//select[contains(@class,'ui dropdown')]")).Click();
 
@@ -56,7 +59,7 @@ namespace SpecflowTests.AcceptanceTest
                 CommonMethods.test = CommonMethods.extent.StartTest("Add a Language");
 
                 Thread.Sleep(1000);
-                string ExpectedValue = "English";
+                string ExpectedValue = "tagalog";
                 string ActualValue = Driver.driver.FindElement(By.XPath("/html/body/div[1]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody/tr/td[1]")).Text;
                 Thread.Sleep(500);
                 if(ExpectedValue == ActualValue)

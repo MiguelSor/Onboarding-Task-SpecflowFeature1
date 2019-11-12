@@ -1,23 +1,27 @@
 ﻿using OpenQA.Selenium;
+using OpenQA.Selenium.Support.UI;
 using RelevantCodes.ExtentReports;
+using SeleniumExtras.WaitHelpers;
 using SpecflowPages;
 using System;
 using System.Threading;
 using TechTalk.SpecFlow;
 using static SpecflowPages.CommonMethods;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace SpecflowTests.AcceptanceTest
 {
     [Binding]
     public class AddASkillOnProfile
     {
-        private const string XpathToFind = "//*[@id=\"account - profile - section\"]/div/section[2]/div/div/div/div[3]/form/div[3]/div/div[2]/div/div/div[2]/select/option";
+    
 
         [Given(@"I clicked on the skills tab")]
         public void GivenIClickedOnTheSkillsTab()
         {
-            //wait for 5 seconds
-            Thread.Sleep(5000);
+            //Wait
+            WebDriverWait wait = new WebDriverWait(Driver.driver, TimeSpan.FromSeconds(20));
+            wait.Until(ExpectedConditions.ElementExists(By.XPath("//a[contains(@data-tab,'second')]")));
 
             //Click on skills tab
             Driver.driver.FindElement(By.XPath("//a[contains(@data-tab,'second')]")).Click();

@@ -75,3 +75,4 @@ C:\Users\migue\Desktop\SpecflowTests-Base\SpecflowTests\SpecflowPages\obj\Debug\
 C:\Users\migue\Desktop\SpecflowTests-Base\SpecflowTests\SpecflowPages\obj\Debug\SpecflowPages.csproj.CopyComplete
 C:\Users\migue\Desktop\SpecflowTests-Base\SpecflowTests\SpecflowPages\obj\Debug\SpecflowPages.dll
 C:\Users\migue\Desktop\SpecflowTests-Base\SpecflowTests\SpecflowPages\obj\Debug\SpecflowPages.pdb
+C:\Users\migue\Desktop\SpecflowTests-Base\SpecflowTests\SpecflowPages\bin\Debug\SeleniumExtras.WaitHelpers.dll

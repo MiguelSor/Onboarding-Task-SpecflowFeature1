@@ -110,3 +110,6 @@ C:\Users\migue\Desktop\SpecflowTests-Base\SpecflowTests\SpecflowTests\obj\Debug\
 C:\Users\migue\Desktop\SpecflowTests-Base\SpecflowTests\SpecflowTests\obj\Debug\SpecflowTests.csproj.CopyComplete
 C:\Users\migue\Desktop\SpecflowTests-Base\SpecflowTests\SpecflowTests\obj\Debug\SpecflowTests.dll
 C:\Users\migue\Desktop\SpecflowTests-Base\SpecflowTests\SpecflowTests\obj\Debug\SpecflowTests.pdb
+C:\Users\migue\Desktop\SpecflowTests-Base\SpecflowTests\SpecflowTests\bin\Debug\SeleniumExtras.WaitHelpers.dll
+C:\Users\migue\Desktop\SpecflowTests-Base\SpecflowTests\SpecflowTests\bin\Debug\WebDriver.dll
+C:\Users\migue\Desktop\SpecflowTests-Base\SpecflowTests\SpecflowTests\bin\Debug\WebDriver.xml

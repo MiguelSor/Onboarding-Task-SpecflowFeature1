@@ -1,5 +1,7 @@
 ﻿using OpenQA.Selenium;
+using OpenQA.Selenium.Support.UI;
 using RelevantCodes.ExtentReports;
+using SeleniumExtras.WaitHelpers;
 using SpecflowPages;
 using System;
 using System.Threading;
@@ -15,7 +17,9 @@ namespace SpecflowTests.AcceptanceTest
         public void GivenIClickedOnTheLanguageTabUnderTheProfilePage()
         {
             //Wait
-            Thread.Sleep(1500);
+            WebDriverWait wait = new WebDriverWait(Driver.driver,TimeSpan.FromSeconds(20));
+            wait.Until(ExpectedConditions.ElementExists(By.XPath("(//a[@class='item'][contains(.,'Profile')])[2]")));
+               
 
             // Click on Profile tab
             Driver.driver.FindElement(By.XPath("(//a[@class='item'][contains(.,'Profile')])[2]")).Click();
@@ -39,10 +43,9 @@ namespace SpecflowTests.AcceptanceTest
                 Driver.driver.FindElement(By.XPath("//input[contains(@placeholder,'Add Language')]")).SendKeys("Spanish");
 
                 //Click on Language Level
-                Driver.driver.FindElement(By.XPath("//select[contains(@class,'ui dropdown')]")).Click();
-
+                Driver.driver.FindElement(By.XPath("//select[contains(@name,'level')]")).Click();
                 //Choose the language level
-                Driver.driver.FindElement(By.CssSelector("#account-profile-section > div > section:nth-child(3) > div > div > div > div.eight.wide.column > form > div.ui.bottom.attached.tab.segment.active.tooltip-target > div > div.twelve.wide.column.scrollTable > div > table > tbody:nth-child(4) > tr > td > div > div:nth-child(2) > select > option:nth-child(2)")).Click();
+                Driver.driver.FindElement(By.XPath("//select[contains(@name,'level')]/child::option[2]")).Click();
 
                 //Click on update button
                 Driver.driver.FindElement(By.XPath("//input[contains(@value,'Update')]")).Click();
@@ -62,12 +65,12 @@ namespace SpecflowTests.AcceptanceTest
                 CommonMethods.test = CommonMethods.extent.StartTest("Edit a Language");
 
                 Thread.Sleep(1000);
-                string ExpectedValue = "tagalog";
-                string ActualValue = Driver.driver.FindElement(By.XPath("/html/body/div[1]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody/tr/td[1]")).Text;
+                string ExpectedValue = "Spanish";
+                string ActualValue = Driver.driver.FindElement(By.XPath("//td[text()='Spanish']")).Text;
                 Thread.Sleep(500);
                 if (ExpectedValue == ActualValue)
                 {
-                    CommonMethods.test.Log(LogStatus.Pass, "Test Passed, Added a Language Successfully");
+                    CommonMethods.test.Log(LogStatus.Pass, "Test Passed, edited a Language Successfully");
                     SaveScreenShotClass.SaveScreenshot(Driver.driver, "LanguageAdded");
                 }
 
